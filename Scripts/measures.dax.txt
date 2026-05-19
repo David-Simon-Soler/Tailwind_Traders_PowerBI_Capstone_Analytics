@@ -1,0 +1,24 @@
+// 1. Annual Efficiency Metric
+Yearly Profit Margin = 
+DIVIDE(
+    SUM('Sales in USD'[Profit USD]);
+    SUM('Sales in USD'[Net Revenue USD])
+)
+
+// 2. Seasonal Dynamic Monitoring (Quarter-to-Date)
+Quarterly Profit Margin = 
+CALCULATE(
+    [Yearly Profit Margin];
+    DATESQTD('CalendarTable'[Date])
+)
+
+// 3. Dynamic Fiscal Accumulator (Year-to-Date)
+YTD Profit Margin = 
+TOTALYTD(
+    [Yearly Profit Margin];
+    'CalendarTable'[Date]
+)
+
+// 4. Operational Baseline Statistics (Outlier-resistant)
+Median Sales = 
+MEDIAN('Sales in USD'[Gross Revenue USD])
